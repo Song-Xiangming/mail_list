@@ -14,7 +14,7 @@
                 <input type="password" class="input" id="psw" @focus="focus=3" @blur="focus=0" v-model="own.psw" placeholder="密码（不少于6位）">
                 <em v-show="focus==3||pswIn==false">*密码不能小于6位</em>
             </label>
-            <button class="loginSub" @click="addToSql">
+            <button class="loginSub" @click.prevent ="addToSql">
                 <span v-show="!result">注册速讯</span>
                 <span v-if="req" v-show="result">注册成功</span>
                 <span v-else v-show="result">重新注册</span>

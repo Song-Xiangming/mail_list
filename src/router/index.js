@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 const app = () => import('@/components/app.vue')
 const register = () => import('@/components/register.vue')
+const login = () => import('@/components/login.vue')
 
 Vue.use(Router)
 
@@ -13,8 +14,8 @@ export default new Router({
       path: '/home',
       component: app,
       children: [
-        { path: 'register', component: register }
-        // { path: 'login', component: login }
+        { path: 'register', component: register },
+        { path: 'login', component: login }
       ]
     }
   ]
