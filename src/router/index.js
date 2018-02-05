@@ -7,6 +7,7 @@ const register = () => import('@/components/register.vue')
 const login = () => import('@/components/login.vue')
 
 const mailList = () => import('@/components/mailList.vue')
+const notes = () => import('@/components/notes.vue')
 
 Vue.use(Router)
 
@@ -23,7 +24,14 @@ export default new Router({
     },
     {
       path: '/contacts',
-      component: mailList
+      component: mailList,
+      children: [
+        {
+          path: '',
+          component: notes,
+          meta: { logined: true }
+        }
+      ]
     }
   ]
 })

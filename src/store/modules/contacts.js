@@ -41,8 +41,7 @@ export default {
           item.id = contactId++
           item.imgSrc = '/static/img/userImg.png'
         })
-        items = JSON.stringify(items)
-        localStorage.setItem('items', items)
+        localStorage.setItem('items', JSON.stringify(items))
         var own = JSON.parse(sessionStorage.user)
 
         commit(USER_INIT, {
