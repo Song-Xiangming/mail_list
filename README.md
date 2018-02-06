@@ -1,4 +1,4 @@
-> 知乎上推荐的一个vue小练习：[通讯录 mail_list](https://github.com/windlany/mail_list)
+> 知乎上推荐的一个vue小练习：[通讯录 mail_list](https://github.com/windlany/mail_list)，下面是学习笔记。
 
 > #### Day 1 2018.1.22 (🍅x4)
 
