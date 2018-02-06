@@ -8,6 +8,8 @@ const login = () => import('@/components/login.vue')
 
 const mailList = () => import('@/components/mailList.vue')
 const notes = () => import('@/components/notes.vue')
+const addCon = () => import('@/components/addCon.vue')
+const own = () => import('@/components/own.vue')
 
 Vue.use(Router)
 
@@ -30,7 +32,9 @@ export default new Router({
           path: '',
           component: notes,
           meta: { logined: true }
-        }
+        },
+        { path: 'add', component: addCon },
+        { path: 'own', component: own }
       ]
     }
   ]

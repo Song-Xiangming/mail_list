@@ -2,6 +2,10 @@
 import router from '../../router'
 
 const USER_INIT = 'USER_INIT' // mailList初始化
+const USER_ADD = 'USER_ADD' // 添加联系人
+const USER_REMOVE = 'USER_REMOVE'
+const USER_CHANGE = 'USER_CHANGE'
+const OWN_CHANGE = 'OWN_CHANGE'
 
 var contactId = 0
 
@@ -14,6 +18,23 @@ export default {
     [USER_INIT] (state, info) {
       state.items = info.items
       state.own = info.own
+    },
+    [USER_ADD] (state, user) {
+      state.items.push(user)
+    },
+    [USER_REMOVE] (state, userId) {
+      state.items = state.items.filter(item => item.id !== userId)
+    },
+    [USER_CHANGE] (state, user) {
+      state.items.forEach(item => {
+        if (item.id === user.id) {
+          item.name = user.name
+          item.tel = user.tel
+        }
+      })
+    },
+    [OWN_CHANGE] (state, user) {
+      state.own = user
     }
   },
   actions: {
@@ -52,7 +73,25 @@ export default {
         window.alert('请先登录~')
         router.replace('/home/login')
       }
+    },
+    userAdd ({ commit }, user) {
+      user.id = contactId++
+      user.imgSrc = '/static/img/userImg.png'
+      let items = JSON.parse(localStorage.getItem('items'))
+      items.push(user)
+      localStorage.setItem('items', JSON.stringify(items))
+      commit(USER_ADD, user)
+    },
+    userRemove ({ commit }, userId) {
+      commit(USER_REMOVE, userId)
+    },
+    userChange ({ commit }, user) {
+      commit(USER_CHANGE, user)
+    },
+    ownChange ({ commit }, user) {
+      sessionStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem(sessionStorage.userId, JSON.stringify(user))
+      commit(OWN_CHANGE, user)
     }
-    // userAdd
   }
 }
